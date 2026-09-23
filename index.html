@@ -13,6 +13,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#120d1f">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anim');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -137,10 +138,41 @@
     .btn-primary small { display: none; }
     .fine .size { display: inline; }
   }
+  /* ---------- scroll animations (only under html.anim: JS on, motion allowed) ---------- */
+  html, body { overflow-x: clip; }
+  .progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 5; transform-origin: 0 50%; transform: scaleX(0);
+              background: linear-gradient(90deg, var(--frost-deep), var(--frost)); box-shadow: 0 0 12px rgba(103,232,249,.55); pointer-events: none; }
+  .anim [data-reveal] { opacity: 0; transform: translate3d(0, 28px, 0);
+                        transition: opacity .85s cubic-bezier(.2,.7,.2,1), transform .85s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0s); }
+  .anim [data-reveal="left"]  { transform: translate3d(-36px, 0, 0); }
+  .anim [data-reveal="right"] { transform: translate3d(36px, 0, 0); }
+  .anim [data-reveal="zoom"]  { transform: scale(.94); }
+  .anim [data-reveal].in { opacity: 1; transform: none; }
+  /* screenshots settle from a slight zoom as their card arrives, and lean in on hover */
+  .anim .gallery img { transform: scale(1.1); transition: transform 1.5s cubic-bezier(.2,.7,.2,1); }
+  .anim .gallery figure.in img { transform: scale(1); }
+  .anim .gallery figure.in:hover img { transform: scale(1.035); transition-duration: .6s; }
+  /* install step numbers pop once their card is in */
+  .anim .steps li::before { transform: scale(0); transition: transform .5s cubic-bezier(.34,1.56,.64,1) calc(var(--d, 0s) + .25s); }
+  .anim .steps li.in::before { transform: scale(1); }
+  /* hero: entrance on load, then parallax driven from the scroll handler */
+  .anim .hero img.bg { transform: scale(1.06); will-change: transform; }
+  .anim .hero .wrap { will-change: transform, opacity; }
+  .anim .hero .wrap > * { opacity: 0; transform: translate3d(0, 22px, 0); animation: rise 1s cubic-bezier(.2,.7,.2,1) forwards; }
+  .anim .hero .wrap > :nth-child(1) { animation-delay: .15s; }
+  .anim .hero .wrap > :nth-child(2) { animation-delay: .28s; }
+  .anim .hero .wrap > :nth-child(3) { animation-delay: .42s; }
+  .anim .hero .wrap > :nth-child(4) { animation-delay: .58s; }
+  .anim .hero .wrap > :nth-child(5) { animation-delay: .74s; }
+  .anim .hero .wrap > :nth-child(6) { animation-delay: .88s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  /* single-column layouts slide up instead of sideways */
+  @media (max-width: 860px) { .anim [data-reveal="left"], .anim [data-reveal="right"] { transform: translate3d(0, 28px, 0); } }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
 </style>
 </head>
 <body>
+<div class="progress" aria-hidden="true"></div>
 
 <header class="hero">
   <img class="bg" src="img/hero.jpg" alt="The Snow General's stone keep, in the storm">
@@ -163,10 +195,10 @@
 <section>
   <div class="wrap story">
     <div>
-      <blockquote>“Radio’s dead. The whole district has gone quiet since Snow took it.”</blockquote>
-      <blockquote>“A pistol and fifty rounds. Everything else I find out there.”</blockquote>
+      <blockquote data-reveal="left">“Radio’s dead. The whole district has gone quiet since Snow took it.”</blockquote>
+      <blockquote data-reveal="left" style="--d:.15s">“A pistol and fifty rounds. Everything else I find out there.”</blockquote>
     </div>
-    <div>
+    <div data-reveal="right" style="--d:.1s">
       <h2>The story</h2>
       <p>Snow rules the district from a white mansion beyond the pass. His right hand, the Snow General, holds a stone keep above the district. Between you and both of them: a horde that never stops coming, and streets you will learn roof by roof.</p>
       <p>Fight through the district, climb the General’s stairs, claim a blade forged in the first winter — and find out what Snow really did to the people who used to live here.</p>
@@ -176,9 +208,9 @@
 
 <section class="alt">
   <div class="wrap">
-    <h2>Screenshots</h2>
-    <p class="lede">Captured in-game.</p>
-    <div class="gallery">
+    <h2 data-reveal>Screenshots</h2>
+    <p class="lede" data-reveal style="--d:.08s">Captured in-game.</p>
+    <div class="gallery" data-stagger>
       <figure class="wide"><img src="img/gameplay.jpg" alt="Third-person view down a rainy district street, M416 raised, the horde coming down the road" loading="lazy"><figcaption>The district, in the rain. They come from every direction — including the roofs.</figcaption></figure>
       <figure><img src="img/frost-nova.jpg" alt="The player with the Frost Blade, surrounded by cats frozen in ice" loading="lazy"><figcaption>Frost Nova: everything around you, locked in ice.</figcaption></figure>
       <figure><img src="img/snow.jpg" alt="Snow, a large white cat with glowing red eyes, on an ice throne dais" loading="lazy"><figcaption>Snow, on his throne.</figcaption></figure>
@@ -188,9 +220,9 @@
 
 <section>
   <div class="wrap">
-    <h2>What’s in it</h2>
-    <p class="lede">A full campaign, start to credits, with checkpoints so you never lose more than a stage.</p>
-    <div class="features">
+    <h2 data-reveal>What’s in it</h2>
+    <p class="lede" data-reveal style="--d:.08s">A full campaign, start to credits, with checkpoints so you never lose more than a stage.</p>
+    <div class="features" data-stagger>
       <div class="feat"><h3>Six weapons</h3><p>Pistol, SMG, M416, bolt rifle, shotgun — and the Frost Blade, with Frost Nova and Glacier Dash.</p></div>
       <div class="feat"><h3>Loot the rooftops</h3><p>Locked chests up on the roofs hold laser sights and a red-dot scope — if you can pick the locks. Armor and grenades are out there too.</p></div>
       <div class="feat"><h3>Ash</h3><p>A cat who rides on your arm — until you need him to be the size of a boss.</p></div>
@@ -203,14 +235,14 @@
 
 <section class="alt" id="install">
   <div class="wrap">
-    <h2>Install</h2>
-    <p class="lede">About a minute. Nothing else to download.</p>
-    <ol class="steps">
+    <h2 data-reveal>Install</h2>
+    <p class="lede" data-reveal style="--d:.08s">About a minute. Nothing else to download.</p>
+    <ol class="steps" data-stagger>
       <li><b>Download</b><p><a href="https://github.com/abwebstudioofficial-web/snow-lord-of-destruction/releases/latest/download/Snow-The-Lord-of-Destruction-win64.zip">Snow-The-Lord-of-Destruction-win64.zip</a> (116 MB).</p></li>
       <li><b>Extract</b><p>Right-click the zip → <b>Extract All…</b> → Extract.</p></li>
       <li><b>Install</b><p>Open the folder and double-click <code>Install Snow.cmd</code>. It adds Desktop and Start Menu shortcuts. Or just run <code>SnowLordOfDestruction.exe</code> to play without installing.</p></li>
     </ol>
-    <div class="note">
+    <div class="note" data-reveal style="--d:.35s">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
       <p><b>“Windows protected your PC”?</b> That appears for any app that isn’t code-signed, which costs money most indie games don’t spend. Click <b>More info</b>, then <b>Run anyway</b>. You only see it once. To remove the game later: Settings → Apps → Installed apps → <i>Snow – The Lord of Destruction</i> → Uninstall.</p>
     </div>
@@ -219,7 +251,7 @@
 
 <section>
   <div class="wrap two">
-    <div>
+    <div data-reveal="left">
       <h2>Controls</h2>
       <p class="lede" style="margin-bottom:18px">All rebindable in Settings.</p>
       <table>
@@ -233,7 +265,7 @@
         <tr><td><kbd>V</kbd> · <kbd>Esc</kbd></td><td>Camera view · pause</td></tr>
       </table>
     </div>
-    <div class="specs">
+    <div class="specs" data-reveal="right" style="--d:.12s">
       <h3>Requirements</h3>
       <ul>
         <li>Windows 10 or 11, 64-bit</li>
@@ -252,7 +284,7 @@
 </section>
 
 <section class="alt final">
-  <div class="wrap">
+  <div class="wrap" data-reveal="zoom">
     <h2>The storm doesn’t wait</h2>
     <p class="lede" style="margin:0 auto 26px">Free. No account, no launcher.</p>
     <div class="cta">
@@ -279,6 +311,42 @@
   document.querySelectorAll('.gallery img').forEach(img => img.addEventListener('click', () => { lbImg.src = img.src; lbImg.alt = img.alt; lb.classList.add('on'); }));
   lb.addEventListener('click', () => lb.classList.remove('on'));
   addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('on'); });
+
+  // ---- scroll animations
+  (() => {
+    const root = document.documentElement, bar = document.querySelector('.progress');
+    const heroImg = document.querySelector('.hero img.bg'), heroWrap = document.querySelector('.hero .wrap');
+    const motion = root.classList.contains('anim');
+    try {
+      if (motion) {
+        // grids reveal child by child
+        document.querySelectorAll('[data-stagger]').forEach(g => [...g.children].forEach((c, i) => {
+          if (!c.hasAttribute('data-reveal')) c.setAttribute('data-reveal', '');
+          c.style.setProperty('--d', (i * 0.09).toFixed(2) + 's');
+        }));
+        const io = new IntersectionObserver(entries => entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        }), { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+        document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+      }
+      let queued = false;
+      const frame = () => {
+        queued = false;
+        const y = scrollY, h = innerHeight, max = root.scrollHeight - h;
+        bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0) + ')';
+        if (motion && y < h * 1.3) {
+          heroImg.style.transform = 'translate3d(0,' + (y * 0.35).toFixed(1) + 'px,0) scale(1.06)';
+          heroWrap.style.transform = 'translate3d(0,' + (y * 0.14).toFixed(1) + 'px,0)';
+          heroWrap.style.opacity = Math.max(0, 1 - y / (h * 0.7)).toFixed(3);
+        }
+      };
+      addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(frame); } }, { passive: true });
+      addEventListener('resize', frame);
+      frame();
+    } catch (err) {
+      root.classList.remove('anim');   // never leave content hidden because an animation failed
+    }
+  })();
 </script>
 </body>
 </html>
