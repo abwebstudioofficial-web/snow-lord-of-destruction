@@ -149,7 +149,10 @@
   .shout .msg .name { color: var(--frost); }
   .shout .more { margin: 16px auto 0; max-width: 540px; font-size: 18px; color: #d4cde6; text-wrap: balance; }
   .shout .sig { margin-top: 20px; font: 300 17px/1 Oswald, sans-serif; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
-  .shout .yt { margin-top: 26px; }
+  .shout .visit { margin: 12px auto 0; font-size: 18px; color: #d4cde6; text-wrap: balance; }
+  .shout .visit a { color: var(--frost); font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(103,232,249,.4); }
+  .shout .visit a:hover { border-bottom-color: var(--frost); }
+  .shout .yt-row { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
   .shout .yt svg { color: #ff4e45; }
   /* the heart beats gently once the note is in view */
   .anim .shout .note-card.in .heart { animation: beat 2.4s ease-in-out 1s infinite; }
@@ -242,11 +245,18 @@
       <span class="kicker">A note for Hxsain</span>
       <p class="msg"><span class="name">Hxsain</span>, if you’re here — thanks for trying my game.</p>
       <p class="more">I took the inspiration from you. Hope you enjoy it. Big fan of yours.</p>
+      <p class="visit">And go visit my channel — <a href="https://www.youtube.com/channel/UCqV805A9UyJXutqr8GSIhRA" target="_blank" rel="noopener">@IqNestofficial</a></p>
       <div class="sig">— IQ Nest</div>
+      <div class="yt-row">
       <a class="btn btn-ghost yt" href="https://www.youtube.com/@hxsain" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.6 2.6 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.6 2.6 0 0 0 2.4 7.2 27 27 0 0 0 2 12a27 27 0 0 0 .4 4.8 2.6 2.6 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.6 2.6 0 0 0 1.8-1.8A27 27 0 0 0 22 12a27 27 0 0 0-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></svg>
         Hxsain on YouTube
       </a>
+      <a class="btn btn-ghost yt" href="https://www.youtube.com/channel/UCqV805A9UyJXutqr8GSIhRA" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.6 2.6 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.6 2.6 0 0 0 2.4 7.2 27 27 0 0 0 2 12a27 27 0 0 0 .4 4.8 2.6 2.6 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.6 2.6 0 0 0 1.8-1.8A27 27 0 0 0 22 12a27 27 0 0 0-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></svg>
+        IQ Nest on YouTube
+      </a>
+      </div>
     </div>
   </div>
 </section>
