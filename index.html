@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Snow — The Lord of Destruction</title>
+<meta name="description" content="A third-person horde shooter. The district went quiet the night Snow took it. A pistol and fifty rounds — everything else you find out there. Free for Windows.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Snow — The Lord of Destruction">
+<meta property="og:description" content="A third-person horde shooter. Free for Windows.">
+<meta property="og:image" content="https://abwebstudioofficial-web.github.io/snow-lord-of-destruction/img/hero.jpg">
+<meta property="og:url" content="https://abwebstudioofficial-web.github.io/snow-lord-of-destruction/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#120d1f">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #120d1f;
+    --bg-2: #1a1330;
+    --panel: #221a3b;
+    --line: rgba(255,255,255,.09);
+    --text: #ece8f6;
+    --muted: #a79fc0;
+    --frost: #67e8f9;
+    --frost-deep: #0e7490;
+    --blood: #ff4d6a;
+    --warn: #ffd36b;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: var(--frost); }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  /* ---------- hero ---------- */
+  .hero { position: relative; min-height: min(92vh, 860px); display: flex; align-items: flex-end; overflow: hidden; }
+  .hero img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+  .hero::after { content: ""; position: absolute; inset: 0; background:
+      linear-gradient(180deg, rgba(18,13,31,.25) 0%, rgba(18,13,31,.1) 35%, rgba(18,13,31,.82) 72%, var(--bg) 100%); }
+  .hero .wrap { position: relative; z-index: 1; padding-bottom: 64px; width: 100%; }
+  .kicker { font: 500 13px/1 Oswald, sans-serif; letter-spacing: .42em; color: var(--frost); text-transform: uppercase; }
+  h1 { margin: 14px 0 0; font: 700 clamp(64px, 14vw, 156px)/.86 Oswald, sans-serif; letter-spacing: .02em; text-transform: uppercase;
+       text-shadow: 0 6px 40px rgba(0,0,0,.55); }
+  .subtitle { margin: 10px 0 0; font: 300 clamp(18px, 3.2vw, 32px)/1.1 Oswald, sans-serif; letter-spacing: .34em; text-transform: uppercase; color: #d8d1ec; }
+  .tagline { margin: 22px 0 0; max-width: 560px; font-size: 18px; color: #d4cde6; }
+  .cta { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .btn { display: inline-flex; align-items: center; gap: 12px; padding: 16px 26px; border-radius: 10px; text-decoration: none;
+         font: 600 17px/1 Inter, sans-serif; transition: transform .12s, box-shadow .12s, background .12s; }
+  .btn-primary { background: var(--frost); color: #06222a; box-shadow: 0 8px 30px rgba(103,232,249,.28); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 38px rgba(103,232,249,.4); }
+  .btn-primary small { font-weight: 500; opacity: .72; font-size: 13px; }
+  .btn-ghost { color: var(--text); border: 1px solid rgba(255,255,255,.22); background: rgba(18,13,31,.35); backdrop-filter: blur(6px); }
+  .btn-ghost:hover { background: rgba(255,255,255,.08); }
+  .btn svg { width: 20px; height: 20px; flex: none; }
+  .fine { margin-top: 14px; font-size: 13px; color: var(--muted); }
+
+  /* ---------- sections ---------- */
+  section { padding: 84px 0; }
+  section.alt { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  h2 { margin: 0 0 8px; font: 500 clamp(28px, 4.4vw, 42px)/1.1 Oswald, sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+  .lede { margin: 0 0 40px; color: var(--muted); max-width: 620px; }
+
+  /* story */
+  .story { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+  .story blockquote { margin: 0; padding: 0 0 0 22px; border-left: 3px solid var(--frost); font: 300 24px/1.45 Oswald, sans-serif; letter-spacing: .01em; color: #e4def3; }
+  .story blockquote + blockquote { margin-top: 18px; }
+  .story p { color: #cbc4df; }
+
+  /* features */
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .feat { padding: 22px; border-radius: 12px; background: var(--panel); border: 1px solid var(--line); }
+  .feat h3 { margin: 0 0 6px; font: 500 18px/1.2 Oswald, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--frost); }
+  .feat p { margin: 0; font-size: 15px; color: #c3bcd8; }
+
+  /* gallery */
+  .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .gallery figure { margin: 0; border-radius: 12px; overflow: hidden; background: var(--panel); border: 1px solid var(--line); }
+  .gallery figure.wide { grid-column: 1 / -1; }
+  .gallery img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; cursor: zoom-in; }
+  .gallery figcaption { padding: 12px 16px; font-size: 14px; color: var(--muted); }
+
+  /* install */
+  .steps { counter-reset: s; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 0; padding: 0; list-style: none; }
+  .steps li { counter-increment: s; position: relative; padding: 24px 22px 22px; border-radius: 12px; background: var(--panel); border: 1px solid var(--line); }
+  .steps li::before { content: counter(s); position: absolute; top: -14px; left: 20px; width: 30px; height: 30px; border-radius: 50%;
+                      background: var(--frost); color: #06222a; font: 700 15px/30px Oswald, sans-serif; text-align: center; }
+  .steps li > b { display: block; margin-bottom: 6px; font: 500 18px/1.2 Oswald, sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+  .steps p { margin: 0; font-size: 15px; color: #c3bcd8; }
+  .steps p b { color: #fff; font-weight: 600; }
+  code, kbd { font: 500 13.5px/1 ui-monospace, "Cascadia Mono", Consolas, monospace; }
+  code { padding: 2px 6px; border-radius: 4px; background: rgba(255,255,255,.08); color: #fff; }
+  .note { margin-top: 22px; display: flex; gap: 14px; padding: 18px 20px; border-radius: 12px; border: 1px solid rgba(255,211,107,.35); background: rgba(255,211,107,.07); }
+  .note svg { flex: none; width: 22px; height: 22px; color: var(--warn); margin-top: 2px; }
+  .note p { margin: 0; font-size: 15px; color: #e9e1c8; }
+  .note b { color: #fff; }
+
+  /* controls + specs */
+  .two { display: grid; grid-template-columns: 1.35fr 1fr; gap: 28px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  td { padding: 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td:first-child { width: 42%; padding-right: 14px; }
+  kbd { display: inline-block; min-width: 24px; padding: 5px 7px; margin: 0 2px 2px 0; border-radius: 5px; text-align: center;
+        background: #2d2450; border: 1px solid rgba(255,255,255,.14); border-bottom-width: 2px; color: #fff; }
+  .specs { padding: 24px; border-radius: 12px; background: var(--panel); border: 1px solid var(--line); }
+  .specs h3 { margin: 0 0 12px; font: 500 18px/1.2 Oswald, sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+  .specs ul { margin: 0; padding-left: 18px; color: #c3bcd8; font-size: 15px; }
+  .specs li + li { margin-top: 6px; }
+
+  /* final cta + footer */
+  .final { text-align: center; }
+  .final .cta { justify-content: center; }
+  footer { padding: 36px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; }
+  footer b { color: var(--text); font-weight: 600; letter-spacing: .08em; }
+
+  /* lightbox */
+  .lb { position: fixed; inset: 0; z-index: 10; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(8,5,16,.92); cursor: zoom-out; }
+  .lb.on { display: flex; }
+  .lb img { max-height: 100%; border-radius: 8px; box-shadow: 0 20px 80px rgba(0,0,0,.6); }
+
+  @media (max-width: 860px) {
+    .story, .two { grid-template-columns: 1fr; gap: 32px; }
+    .features, .steps { grid-template-columns: 1fr; }
+    .steps { gap: 26px; }
+    .gallery { grid-template-columns: 1fr; }
+    section { padding: 64px 0; }
+    .hero { min-height: min(86vh, 760px); }
+    .hero .wrap { padding-bottom: 44px; }
+  }
+  .fine .size { display: none; }
+  @media (max-width: 480px) {
+    .cta .btn { width: 100%; justify-content: center; }
+    .btn-primary small { display: none; }
+    .fine .size { display: inline; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img class="bg" src="img/hero.jpg" alt="The Snow General's stone keep, in the storm">
+  <div class="wrap">
+    <div class="kicker">A game by IQ Nest</div>
+    <h1>Snow</h1>
+    <div class="subtitle">The Lord of Destruction</div>
+    <p class="tagline">The district went quiet the night Snow took it. His horde is in every street. You have a pistol and fifty rounds — everything else, you find out there.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://github.com/abwebstudioofficial-web/snow-lord-of-destruction/releases/latest/download/Snow-The-Lord-of-Destruction-win64.zip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>
+        Download for Windows <small>Free · 116 MB</small>
+      </a>
+      <a class="btn btn-ghost" href="#install">How to install</a>
+    </div>
+    <div class="fine">Windows 10 / 11, 64-bit · <span class="size">Free · 116 MB · </span>Version 1.0</div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap story">
+    <div>
+      <blockquote>“Radio’s dead. The whole district has gone quiet since Snow took it.”</blockquote>
+      <blockquote>“A pistol and fifty rounds. Everything else I find out there.”</blockquote>
+    </div>
+    <div>
+      <h2>The story</h2>
+      <p>Snow rules the district from a white mansion beyond the pass. His right hand, the Snow General, holds a stone keep above the district. Between you and both of them: a horde that never stops coming, and streets you will learn roof by roof.</p>
+      <p>Fight through the district, climb the General’s stairs, claim a blade forged in the first winter — and find out what Snow really did to the people who used to live here.</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>Screenshots</h2>
+    <p class="lede">Captured in-game.</p>
+    <div class="gallery">
+      <figure class="wide"><img src="img/gameplay.jpg" alt="Third-person view down a rainy district street, M416 raised, the horde coming down the road" loading="lazy"><figcaption>The district, in the rain. They come from every direction — including the roofs.</figcaption></figure>
+      <figure><img src="img/frost-nova.jpg" alt="The player with the Frost Blade, surrounded by cats frozen in ice" loading="lazy"><figcaption>Frost Nova: everything around you, locked in ice.</figcaption></figure>
+      <figure><img src="img/snow.jpg" alt="Snow, a large white cat with glowing red eyes, on an ice throne dais" loading="lazy"><figcaption>Snow, on his throne.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What’s in it</h2>
+    <p class="lede">A full campaign, start to credits, with checkpoints so you never lose more than a stage.</p>
+    <div class="features">
+      <div class="feat"><h3>Six weapons</h3><p>Pistol, SMG, M416, bolt rifle, shotgun — and the Frost Blade, with Frost Nova and Glacier Dash.</p></div>
+      <div class="feat"><h3>Loot the rooftops</h3><p>Locked chests up on the roofs hold laser sights and a red-dot scope — if you can pick the locks. Armor and grenades are out there too.</p></div>
+      <div class="feat"><h3>Ash</h3><p>A cat who rides on your arm — until you need him to be the size of a boss.</p></div>
+      <div class="feat"><h3>Two bosses</h3><p>The Snow General on his keep, and Snow in his throne hall. Both change the fight at half health.</p></div>
+      <div class="feat"><h3>Voiced cutscenes</h3><p>A fully voiced story, told between the fights — and some of it you only learn at the very end.</p></div>
+      <div class="feat"><h3>Your way</h3><p>Third person, over the shoulder, or first person. Adjustable FOV, rebindable keys, stealth if you want it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="install">
+  <div class="wrap">
+    <h2>Install</h2>
+    <p class="lede">About a minute. Nothing else to download.</p>
+    <ol class="steps">
+      <li><b>Download</b><p><a href="https://github.com/abwebstudioofficial-web/snow-lord-of-destruction/releases/latest/download/Snow-The-Lord-of-Destruction-win64.zip">Snow-The-Lord-of-Destruction-win64.zip</a> (116 MB).</p></li>
+      <li><b>Extract</b><p>Right-click the zip → <b>Extract All…</b> → Extract.</p></li>
+      <li><b>Install</b><p>Open the folder and double-click <code>Install Snow.cmd</code>. It adds Desktop and Start Menu shortcuts. Or just run <code>SnowLordOfDestruction.exe</code> to play without installing.</p></li>
+    </ol>
+    <div class="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+      <p><b>“Windows protected your PC”?</b> That appears for any app that isn’t code-signed, which costs money most indie games don’t spend. Click <b>More info</b>, then <b>Run anyway</b>. You only see it once. To remove the game later: Settings → Apps → Installed apps → <i>Snow – The Lord of Destruction</i> → Uninstall.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap two">
+    <div>
+      <h2>Controls</h2>
+      <p class="lede" style="margin-bottom:18px">All rebindable in Settings.</p>
+      <table>
+        <tr><td><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></td><td>Move · double-tap <kbd>W</kbd> to sprint</td></tr>
+        <tr><td>Mouse</td><td>Aim · left click fire · right click aim down sights</td></tr>
+        <tr><td><kbd>Space</kbd> · <kbd>Shift</kbd></td><td>Jump · crouch</td></tr>
+        <tr><td><kbd>1</kbd>–<kbd>6</kbd> · <kbd>Q</kbd></td><td>Weapons · cycle weapon</td></tr>
+        <tr><td><kbd>R</kbd> · <kbd>G</kbd></td><td>Reload · grenade</td></tr>
+        <tr><td><kbd>E</kbd></td><td>Interact · open chests · get in the car</td></tr>
+        <tr><td><kbd>C</kbd> · <kbd>U</kbd></td><td>Unleash Ash · upgrades</td></tr>
+        <tr><td><kbd>V</kbd> · <kbd>Esc</kbd></td><td>Camera view · pause</td></tr>
+      </table>
+    </div>
+    <div class="specs">
+      <h3>Requirements</h3>
+      <ul>
+        <li>Windows 10 or 11, 64-bit</li>
+        <li>A graphics card from roughly the last eight years</li>
+        <li>About 300 MB of disk space</li>
+        <li>Keyboard and mouse</li>
+      </ul>
+      <h3 style="margin-top:22px">Tips</h3>
+      <ul>
+        <li>Headshots end a normal cat in one hit.</li>
+        <li>The horde climbs. Rooftops are safer, not safe.</li>
+        <li>Pause → Checkpoints lets you replay any stage you’ve reached.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="alt final">
+  <div class="wrap">
+    <h2>The storm doesn’t wait</h2>
+    <p class="lede" style="margin:0 auto 26px">Free. No account, no launcher.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://github.com/abwebstudioofficial-web/snow-lord-of-destruction/releases/latest/download/Snow-The-Lord-of-Destruction-win64.zip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>
+        Download for Windows <small>116 MB</small>
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/abwebstudioofficial-web/snow-lord-of-destruction/releases">All versions</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span><b>SNOW — THE LORD OF DESTRUCTION</b> · A game by IQ Nest · Characters by Hxsain &amp; IQ Nest</span>
+    <span><a href="https://github.com/abwebstudioofficial-web/snow-lord-of-destruction/releases">Releases</a></span>
+  </div>
+</footer>
+
+<div class="lb" id="lb"><img alt=""></div>
+<script>
+  // click a screenshot to see it full size; click anywhere or press Esc to close
+  const lb = document.getElementById('lb'), lbImg = lb.querySelector('img');
+  document.querySelectorAll('.gallery img').forEach(img => img.addEventListener('click', () => { lbImg.src = img.src; lbImg.alt = img.alt; lb.classList.add('on'); }));
+  lb.addEventListener('click', () => lb.classList.remove('on'));
+  addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('on'); });
+</script>
+</body>
+</html>
