@@ -136,6 +136,14 @@
   #upgrades .ur i { width:14px; height:8px; background:rgba(255,255,255,.15); border-radius:1px; }
   #upgrades .ur i.on { background:#ffd36b; box-shadow:0 0 8px rgba(255,211,107,.8); }
   #upgrades .btn.small { padding:6px 12px; font-size:11px; min-width:96px; }
+  #forgeui #flist { width:min(640px, 90vw); margin:10px auto; }
+  #forgeui #fsub { opacity:.75; letter-spacing:.08em; font-size:12px; }
+  #forgeui .urow { display:flex; align-items:center; gap:14px; padding:9px 4px; border-bottom:1px solid rgba(111,216,255,.18); }
+  #forgeui .un { flex:1; letter-spacing:.16em; font-size:14px; text-align:left; }
+  #forgeui .un .arrow { color:#6fd8ff; letter-spacing:.1em; }
+  #forgeui .un small { display:block; letter-spacing:.04em; font-size:11px; opacity:.65; margin-top:3px; }
+  #forgeui .urow.done .un { color:#9fe6ff; text-shadow:0 0 10px rgba(111,216,255,.6); }
+  #forgeui .btn.small { padding:6px 12px; font-size:11px; min-width:120px; }
   #upgrades .btn:disabled { opacity:.35; cursor:default; }
   #phasecard { position:fixed; left:50%; top:26%; transform:translate(-50%,-50%) scale(0.9); font-family:'Cinzel', Georgia, serif; font-size:30px; letter-spacing:.35em; color:#ffe6ee; text-shadow:0 0 22px rgba(255,64,96,.8), 0 2px 8px #000; opacity:0; pointer-events:none; z-index:40; white-space:nowrap; transition:opacity .35s, transform .35s; }
   #phasecard.show { opacity:1; transform:translate(-50%,-50%) scale(1); }
@@ -357,7 +365,7 @@
     <div class="title left small"><span class="op">NEW OPERATION</span><span class="main">LOADOUT</span></div>
     <div class="field"><label>Callsign</label><input type="text" id="cname" maxlength="16" placeholder="OPERATOR"></div>
     <div class="field"><label>Difficulty</label><div class="seg" id="cdiff"></div></div>
-    <div class="field"><label>Front (map · weather)</label><div class="seg" id="cmap"></div><div class="note">Changing the front reloads the game before the drive in.</div></div>
+    <div class="field" style="display:none"><label>Front (map · weather)</label><div class="seg" id="cmap"></div><div class="note">Changing the front reloads the game before the drive in.</div></div>
     <div class="field"><label>Operator</label><button class="btn" id="ccustom">Customize your model <span class="hint" id="ccustomhint">default look</span></button></div>
     <div class="menu"><button class="btn primary" id="cstart">Deploy</button><button class="btn" id="cback">Back</button></div>
   </div>
@@ -415,6 +423,12 @@
   <div id="ulist"></div>
   <div class="menu"><button class="btn primary" id="uclose">Back <span class="hint">U / Esc</span></button></div>
 </div>
+<div id="forgeui" class="overlay hidden">
+  <div class="title small"><span class="op">THE GENERAL'S</span><span class="main">FORGE</span></div>
+  <p id="fsub">His own secret technology — not Snow's. Every weapon, forged free.</p>
+  <div id="flist"></div>
+  <div class="menu"><button class="btn" id="fall">Forge everything</button><button class="btn primary" id="fclose">Back <span class="hint">Esc</span></button></div>
+</div>
 <div id="orders" class="hidden"></div>
 <div id="hitdirs"></div>
 <div id="dmgnums"></div>
@@ -446,7 +460,7 @@
 
 <div id="credits" class="overlay hidden"><div class="roll" id="creditroll"></div><div class="click">CLICK TO RETURN TO TITLE</div></div>
 
-<script src="game.js?v=mufh0fkh"></script>
+<script src="game.js?v=muwztrfz"></script>
 
 <div id="touchonly" style="display:none; position:fixed; inset:0; z-index:9999; background:#07060d; color:#fff; font-family:system-ui,Segoe UI,sans-serif; text-align:center; padding:32px; box-sizing:border-box; flex-direction:column; align-items:center; justify-content:center; gap:14px">
   <div style="font-size:12px; letter-spacing:.4em; opacity:.7">SNOW · THE LORD OF DESTRUCTION</div>
